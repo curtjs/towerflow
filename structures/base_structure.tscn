@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vu4gok0th0pi"]
+
+[ext_resource type="Script" uid="uid://ciaxpwntq7vt5" path="res://structures/structure.gd" id="1_eg4rw"]
+
+[node name="BaseStructure" type="Sprite2D"]
+script = ExtResource("1_eg4rw")

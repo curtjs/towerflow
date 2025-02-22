@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://lfafx5ukayfs"]
 
-[ext_resource type="Script" path="res://game/controllers/building_controller.gd" id="1_4nh02"]
-[ext_resource type="PackedScene" uid="uid://ctxt4rq250asb" path="res://structures/prototype_structure_a.tscn" id="2_0furd"]
-[ext_resource type="PackedScene" uid="uid://cweare5fnjbg2" path="res://structures/prototype_structure_b.tscn" id="3_gbqyv"]
-[ext_resource type="PackedScene" uid="uid://bcn44cc85pm18" path="res://structures/prototype_structure_c.tscn" id="4_pl2t6"]
+[ext_resource type="Script" uid="uid://d2l3dejlhv8lj" path="res://game/controllers/building_controller.gd" id="1_4nh02"]
+[ext_resource type="PackedScene" uid="uid://6ncgodehgkfk" path="res://structures/power_source.tscn" id="2_cb4xn"]
+[ext_resource type="PackedScene" uid="uid://cuqlhfr0nxjox" path="res://structures/test.tscn" id="4_2dde1"]
+[ext_resource type="PackedScene" uid="uid://b2kynafj1wbxv" path="res://structures/wire.tscn" id="5_51jte"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfb2d"]
 content_margin_left = 10.0
@@ -16,7 +16,7 @@ border_color = Color(0, 0, 0, 1)
 
 [node name="BuildingController" type="Node2D"]
 script = ExtResource("1_4nh02")
-structures = Array[PackedScene]([ExtResource("2_0furd"), ExtResource("3_gbqyv"), ExtResource("4_pl2t6")])
+structures = Array[PackedScene]([ExtResource("2_cb4xn"), ExtResource("5_51jte"), ExtResource("4_2dde1")])
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -52,8 +52,8 @@ text = "Available Structures"
 layout_mode = 2
 size_flags_vertical = 3
 item_count = 3
-item_0/text = "Structure A"
-item_1/text = "Structure B"
-item_2/text = "Structure C"
+item_0/text = "Power Source"
+item_1/text = "Wire"
+item_2/text = "TEst"
 
 [connection signal="item_clicked" from="UI/Control/BuildMenu/VBoxContainer/StructureList" to="." method="_on_item_list_item_clicked"]

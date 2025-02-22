@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1ng0r435j0t6"]
+
+[ext_resource type="Script" uid="uid://dwkyjjim1ovgv" path="res://structures/components/conductor_component.gd" id="1_nn7qw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_418dp"]
+size = Vector2(4, 4)
+
+[node name="ConductorComponent" type="Area2D"]
+script = ExtResource("1_nn7qw")
+
+[node name="EnergizedVisualizer" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 0, 1)
+texture = SubResource("PlaceholderTexture2D_418dp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

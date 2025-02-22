@@ -2,7 +2,7 @@ class_name BuildingController
 extends Node2D
 
 
-@export var structures: Array[PackedScene] = []
+@export var structures: Array[PackedScene]
 @export var grid_size: int = 16
 
 @onready var build_menu := %BuildMenu
@@ -45,17 +45,16 @@ func place_structure() -> void:
 	if !structure_scene:
 		return
 	
-	var new_structure = structure_scene.instantiate()
+	var new_structure := structure_scene.instantiate() as Structure
 	new_structure.global_position = ghost_object.global_position
+	new_structure.placed = true
 	add_child(new_structure)
 
 
 func _on_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
-	# 1: Get the corresponding scene
 	if structures.size() > index:
 		structure_scene = structures[index]
 		
-		# 2: Update the ghost
 		if ghost_object:
 			ghost_object.queue_free()
 		

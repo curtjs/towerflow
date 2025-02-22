@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2kynafj1wbxv"]
+
+[ext_resource type="PackedScene" uid="uid://vu4gok0th0pi" path="res://structures/base_structure.tscn" id="1_5ecgy"]
+[ext_resource type="PackedScene" uid="uid://b1ng0r435j0t6" path="res://structures/components/conductor_component.tscn" id="1_gbyub"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aftfj"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsyj0"]
+size = Vector2(7.95976, 2.0739)
+
+[node name="Wire" instance=ExtResource("1_5ecgy")]
+texture = SubResource("PlaceholderTexture2D_aftfj")
+
+[node name="ConductorComponent" parent="." index="0" instance=ExtResource("1_gbyub")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConductorComponent" index="1"]
+position = Vector2(0.0089283, -8.96305)
+shape = SubResource("RectangleShape2D_dsyj0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ConductorComponent" index="2"]
+position = Vector2(0.0089283, 8.99323)
+shape = SubResource("RectangleShape2D_dsyj0")

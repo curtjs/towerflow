@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ncgodehgkfk"]
+
+[ext_resource type="PackedScene" uid="uid://b1ng0r435j0t6" path="res://structures/components/conductor_component.tscn" id="1_o687o"]
+[ext_resource type="PackedScene" uid="uid://vu4gok0th0pi" path="res://structures/base_structure.tscn" id="1_wb5ol"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q0gbi"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_if5i4"]
+
+[node name="PowerSource" instance=ExtResource("1_wb5ol")]
+texture = SubResource("PlaceholderTexture2D_q0gbi")
+
+[node name="ConductorComponent" parent="." index="0" instance=ExtResource("1_o687o")]
+energized = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConductorComponent" index="1"]
+shape = SubResource("RectangleShape2D_if5i4")
+
+[connection signal="area_exited" from="ConductorComponent" to="ConductorComponent" method="_on_area_exited"]

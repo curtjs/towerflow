@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcn44cc85pm18"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0dgoy"]
+size = Vector2(24, 24)
+
+[node name="PrototypeStructureB" type="Sprite2D"]
+modulate = Color(0.690196, 1, 0.482353, 1)
+texture = SubResource("PlaceholderTexture2D_0dgoy")

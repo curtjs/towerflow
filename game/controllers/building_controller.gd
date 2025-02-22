@@ -2,16 +2,13 @@ class_name BuildingController
 extends Node2D
 
 
-@export var structure_scene: PackedScene
+@export var structures: Array[PackedScene] = []
 @export var grid_size: int = 16
 
+@onready var build_menu := %BuildMenu
+
+var structure_scene: PackedScene
 var ghost_object: Sprite2D
-
-
-func _ready() -> void:
-	ghost_object = structure_scene.instantiate()
-	ghost_object.modulate = Color(1, 1, 1, 0.5)
-	add_child(ghost_object)
 
 
 func _process(delta: float) -> void:
@@ -19,6 +16,9 @@ func _process(delta: float) -> void:
 
 
 func update_ghost_pos() -> void:
+	if !ghost_object:
+		return
+	
 	var m_pos = get_global_mouse_position()
 	var s_pos = snap_to_grid(m_pos)
 	ghost_object.global_position = s_pos
@@ -36,10 +36,29 @@ func _input(event: InputEvent) -> void:
 		var mbe = event as InputEventMouseButton
 		
 		if mbe.button_index == MOUSE_BUTTON_LEFT && mbe.pressed:
+			if build_menu.get_global_rect().has_point(mbe.global_position):
+				return
 			place_structure()
 
 
 func place_structure() -> void:
+	if !structure_scene:
+		return
+	
 	var new_structure = structure_scene.instantiate()
 	new_structure.global_position = ghost_object.global_position
 	add_child(new_structure)
+
+
+func _on_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
+	# 1: Get the corresponding scene
+	if structures.size() > index:
+		structure_scene = structures[index]
+		
+		# 2: Update the ghost
+		if ghost_object:
+			ghost_object.queue_free()
+		
+		ghost_object = structure_scene.instantiate()
+		ghost_object.modulate = Color(1, 1, 1, 0.5)
+		add_child(ghost_object)

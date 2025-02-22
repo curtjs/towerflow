@@ -1,6 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://lfafx5ukayfs"]
+[gd_scene load_steps=6 format=3 uid="uid://lfafx5ukayfs"]
 
 [ext_resource type="Script" path="res://game/controllers/building_controller.gd" id="1_4nh02"]
+[ext_resource type="PackedScene" uid="uid://ctxt4rq250asb" path="res://structures/prototype_structure_a.tscn" id="2_0furd"]
+[ext_resource type="PackedScene" uid="uid://cweare5fnjbg2" path="res://structures/prototype_structure_b.tscn" id="3_gbqyv"]
+[ext_resource type="PackedScene" uid="uid://bcn44cc85pm18" path="res://structures/prototype_structure_c.tscn" id="4_pl2t6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfb2d"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.701961)
+border_width_left = 5
+border_color = Color(0, 0, 0, 1)
 
 [node name="BuildingController" type="Node2D"]
 script = ExtResource("1_4nh02")
+structures = Array[PackedScene]([ExtResource("2_0furd"), ExtResource("3_gbqyv"), ExtResource("4_pl2t6")])
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BuildMenu" type="PanelContainer" parent="UI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dfb2d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/BuildMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Control/BuildMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Available Structures"
+
+[node name="StructureList" type="ItemList" parent="UI/Control/BuildMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 3
+item_0/text = "Structure A"
+item_1/text = "Structure B"
+item_2/text = "Structure C"
+
+[connection signal="item_clicked" from="UI/Control/BuildMenu/VBoxContainer/StructureList" to="." method="_on_item_list_item_clicked"]

@@ -1,9 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://f50ndq3shqei"]
+[gd_scene load_steps=2 format=3 uid="uid://f50ndq3shqei"]
 
 [ext_resource type="PackedScene" uid="uid://lfafx5ukayfs" path="res://game/controllers/building_controller.tscn" id="1_tcusq"]
-[ext_resource type="PackedScene" uid="uid://ctxt4rq250asb" path="res://structures/prototype_structure.tscn" id="2_8bei5"]
 
 [node name="Game" type="Node2D"]
 
 [node name="BuildingController" parent="." instance=ExtResource("1_tcusq")]
-structure_scene = ExtResource("2_8bei5")

@@ -3,5 +3,5 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fkfyd"]
 size = Vector2(16, 16)
 
-[node name="PrototypeStructure" type="Sprite2D"]
+[node name="PrototypeStructureA" type="Sprite2D"]
 texture = SubResource("PlaceholderTexture2D_fkfyd")

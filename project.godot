@@ -23,6 +23,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="New Game Project"
 
+[global_group]
+
+reciever=""
+
 [input]
 
 rotate_right={

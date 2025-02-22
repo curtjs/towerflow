@@ -2,16 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://b1ng0r435j0t6" path="res://structures/components/conductor_component.tscn" id="1_o687o"]
 [ext_resource type="PackedScene" uid="uid://vu4gok0th0pi" path="res://structures/base_structure.tscn" id="1_wb5ol"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q0gbi"]
-size = Vector2(16, 16)
+[ext_resource type="Texture2D" uid="uid://c18pv8arihj21" path="res://structures/power_source/power_source.png" id="2_2f52b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_if5i4"]
+size = Vector2(17, 17)
 
 [node name="PowerSource" instance=ExtResource("1_wb5ol")]
-texture = SubResource("PlaceholderTexture2D_q0gbi")
+texture = ExtResource("2_2f52b")
 
-[node name="ConductorComponent" parent="." index="0" instance=ExtResource("1_o687o")]
+[node name="ConductorComponent" parent="." index="0" groups=["reciever"] instance=ExtResource("1_o687o")]
 energized = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConductorComponent" index="1"]

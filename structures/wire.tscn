@@ -1,16 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2kynafj1wbxv"]
+[gd_scene load_steps=7 format=3 uid="uid://b2kynafj1wbxv"]
 
 [ext_resource type="PackedScene" uid="uid://vu4gok0th0pi" path="res://structures/base_structure.tscn" id="1_5ecgy"]
 [ext_resource type="PackedScene" uid="uid://b1ng0r435j0t6" path="res://structures/components/conductor_component.tscn" id="1_gbyub"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aftfj"]
-size = Vector2(8, 16)
+[ext_resource type="Texture2D" uid="uid://cagwfodhg386e" path="res://structures/wire/wire.png" id="2_xjm1k"]
+[ext_resource type="Script" uid="uid://dou6b7av540w" path="res://structures/wire/sprite_connections_manager.gd" id="3_hqt6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsyj0"]
 size = Vector2(7.95976, 2.0739)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqt6m"]
+size = Vector2(16, 16)
+
 [node name="Wire" instance=ExtResource("1_5ecgy")]
-texture = SubResource("PlaceholderTexture2D_aftfj")
+texture = ExtResource("2_xjm1k")
+hframes = 16
 
 [node name="ConductorComponent" parent="." index="0" instance=ExtResource("1_gbyub")]
 
@@ -21,3 +24,49 @@ shape = SubResource("RectangleShape2D_dsyj0")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ConductorComponent" index="2"]
 position = Vector2(0.0089283, 8.99323)
 shape = SubResource("RectangleShape2D_dsyj0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ConductorComponent" index="3"]
+position = Vector2(9, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dsyj0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ConductorComponent" index="4"]
+position = Vector2(-9, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dsyj0")
+
+[node name="SpriteConnectionsManager" type="Node2D" parent="." index="1"]
+script = ExtResource("3_hqt6m")
+
+[node name="Reciever" type="Area2D" parent="SpriteConnectionsManager" index="0" groups=["reciever"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteConnectionsManager/Reciever" index="0"]
+shape = SubResource("RectangleShape2D_hqt6m")
+
+[node name="RayCastRight" type="RayCast2D" parent="SpriteConnectionsManager" index="1"]
+position = Vector2(11, 0)
+target_position = Vector2(5, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCastLeft" type="RayCast2D" parent="SpriteConnectionsManager" index="2"]
+position = Vector2(-11, 0)
+target_position = Vector2(-5, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCastUp" type="RayCast2D" parent="SpriteConnectionsManager" index="3"]
+position = Vector2(0, -11)
+target_position = Vector2(0, -5)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCastDown" type="RayCast2D" parent="SpriteConnectionsManager" index="4"]
+position = Vector2(0, 11)
+target_position = Vector2(0, 5)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false

@@ -22,6 +22,12 @@ func update_ghost_pos() -> void:
 	var m_pos = get_global_mouse_position()
 	var s_pos = snap_to_grid(m_pos)
 	ghost_object.global_position = s_pos
+	
+	if Input.is_action_just_pressed("rotate_right"):
+		ghost_object.global_rotation_degrees += 90
+	
+	if Input.is_action_just_pressed("rotate_left"):
+		ghost_object.global_rotation_degrees -= 90
 
 
 func snap_to_grid(pos: Vector2) -> Vector2:
@@ -47,6 +53,7 @@ func place_structure() -> void:
 	
 	var new_structure := structure_scene.instantiate() as Structure
 	new_structure.global_position = ghost_object.global_position
+	new_structure.global_rotation = ghost_object.global_rotation
 	new_structure.placed = true
 	add_child(new_structure)
 
